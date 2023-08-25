@@ -45,7 +45,7 @@ def write_to_file(filename, instances):
         for instance in instances:
             file.write(f'{instance}\n')
 
-args = ["$1", "$2", "$3"]
+args = ["$1", "$2", "$3", "$4"]
 
 args = [arg for arg in args if arg]
 
@@ -62,6 +62,31 @@ if num_args == 3:
     instances = generate_instances(start, end, points)
     instances = [round(float(instance),3) for instance in instances]
     
+    one_in_list = False
+    for i in range(len(instances)):
+        if instances[i] == 0:
+            instances[i] = 0.001
+        if instances[i] == 1:
+            one_in_list = True
+
+    if not one_in_list:
+        instances.append(1.0)
+
+    write_to_file_alt('alt_instances.txt', instances)
+    write_to_file('instances.txt', instances)
+
+elif num_args == 4:
+    start = float("$start")
+    end = float("$end")
+    points = int("$points")
+
+    dir_name = "$4"
+    print(dir_name)
+    os.makedirs(dir_name)
+
+    instances = generate_instances(start, end, points)
+    instances = [round(float(instance),3) for instance in instances]
+
     one_in_list = False
     for i in range(len(instances)):
         if instances[i] == 0:

@@ -1,0 +1,63 @@
+(b~ )g    ==>  H    H    b~      | mult=  1
+ g   g    ==>  H    H       | uborn, mult=  1
+   1  5
+(c~ )g    ==>  H    H    c~      | mult=  1
+ g   g    ==>  H    H       | uborn, mult=  1
+   1  5
+(s~ )g    ==>  H    H    s~      | mult=  1
+ g   g    ==>  H    H       | uborn, mult=  1
+   1  5
+(u~ )g    ==>  H    H    u~      | mult=  1
+ g   g    ==>  H    H       | uborn, mult=  1
+   1  5
+(d~ )g    ==>  H    H    d~      | mult=  1
+ g   g    ==>  H    H       | uborn, mult=  1
+   1  5
+ g  (b~ ) ==>  H    H    b~      | mult=  1
+ g   g    ==>  H    H       | uborn, mult=  1
+   2  5
+ g  (c~ ) ==>  H    H    c~      | mult=  1
+ g   g    ==>  H    H       | uborn, mult=  1
+   2  5
+ g  (s~ ) ==>  H    H    s~      | mult=  1
+ g   g    ==>  H    H       | uborn, mult=  1
+   2  5
+ g  (u~ ) ==>  H    H    u~      | mult=  1
+ g   g    ==>  H    H       | uborn, mult=  1
+   2  5
+ g  (d~ ) ==>  H    H    d~      | mult=  1
+ g   g    ==>  H    H       | uborn, mult=  1
+   2  5
+(g   g  ) ==>  H    H    g       | mult=  1
+ g   g    ==>  H    H       | uborn, mult=  1
+   0  5
+ g  (d  ) ==>  H    H    d       | mult=  1
+ g   g    ==>  H    H       | uborn, mult=  1
+   2  5
+ g  (u  ) ==>  H    H    u       | mult=  1
+ g   g    ==>  H    H       | uborn, mult=  1
+   2  5
+ g  (s  ) ==>  H    H    s       | mult=  1
+ g   g    ==>  H    H       | uborn, mult=  1
+   2  5
+ g  (c  ) ==>  H    H    c       | mult=  1
+ g   g    ==>  H    H       | uborn, mult=  1
+   2  5
+ g  (b  ) ==>  H    H    b       | mult=  1
+ g   g    ==>  H    H       | uborn, mult=  1
+   2  5
+(d  )g    ==>  H    H    d       | mult=  1
+ g   g    ==>  H    H       | uborn, mult=  1
+   1  5
+(u  )g    ==>  H    H    u       | mult=  1
+ g   g    ==>  H    H       | uborn, mult=  1
+   1  5
+(s  )g    ==>  H    H    s       | mult=  1
+ g   g    ==>  H    H       | uborn, mult=  1
+   1  5
+(c  )g    ==>  H    H    c       | mult=  1
+ g   g    ==>  H    H       | uborn, mult=  1
+   1  5
+(b  )g    ==>  H    H    b       | mult=  1
+ g   g    ==>  H    H       | uborn, mult=  1
+   1  5
