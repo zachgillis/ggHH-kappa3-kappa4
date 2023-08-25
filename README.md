@@ -1,6 +1,6 @@
 # POWHEG-BOX analysis of gg→hh cross-sections
 
-## For different values of kappa3 
+## Instructions for sweeping values of kappa3 
 
 If you'd like to automatically define the kappa3 instances (automatically including 1 and excluding 0), run ``./job_submit.sh <start_value> <end_value> <number_of_points>``. If you'd like to name the sweep directory, run ``./job_submit.sh <start_value> <end_value> <number_of_points> <sweep_directory_name>``. 
 
