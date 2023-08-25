@@ -8,4 +8,4 @@ Once the jobs have finished running, run ``./extract_data.py``. This will create
 
 Use ``generate_plots.ipynb`` to generate the plots and fit the results to quadratic polynomials (LATEX must be installed, specify file paths of ``results.csv`` files to include)
 
-Graphs and sweep directories are included in the repository (``powheg.input`` files can be found in the individual child run directories). 
+Graphs and sweep directories are included in this repository (``powheg.input`` files can be found in the individual child run directories). 
