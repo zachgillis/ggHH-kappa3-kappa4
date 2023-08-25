@@ -2,7 +2,7 @@
 
 ## Instructions for sweeping values of kappa3 
 
-If you'd like to automatically define the kappa3 instances (automatically including 1 and excluding 0), run ``./job_submit.sh <start_value> <end_value> <number_of_points>``. If you'd like to name the sweep directory, run ``./job_submit.sh <start_value> <end_value> <number_of_points> <sweep_directory_name>``. 
+If you'd like to automatically define the kappa3 instances, run ``./job_submit.sh <start_value> <end_value> <number_of_points>``. If you'd like to name the sweep directory, run ``./job_submit.sh <start_value> <end_value> <number_of_points> <sweep_directory_name>``. 
 
 If you'd like to define the kappa3 instances to be run, list the values on their own lines in an ``instances.txt`` file. Then, run ``./job_submit.sh``
 
