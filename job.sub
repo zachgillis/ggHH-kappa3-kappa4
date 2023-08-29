@@ -7,7 +7,7 @@ Log = job.log
 request_memory=1GB
 request_cpus=1
 
-Executable = /home/zachgillis/POWHEG-BOX-V2/ggHH-clean-kappa3kappa4/run.sh
+Executable = /home/zachgillis/POWHEG-BOX-V2/ggHH-kappa3kappa4/run.sh
 Arguments = $(item)
 
 Queue item from alt_instances.txt

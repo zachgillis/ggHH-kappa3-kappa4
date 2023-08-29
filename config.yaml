@@ -1,0 +1,10 @@
+directory_name: 13_TeV_LO_fixedscale0
+auto_generate_sweep: true
+kappa3_start: -2
+kappa3_end: 8
+kappa3_points: 20
+kappa4_start: -400
+kappa4_end: 400
+kappa4_points: 30
+nlo: false
+fixedscale: 0

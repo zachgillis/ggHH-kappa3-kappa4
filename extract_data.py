@@ -27,20 +27,29 @@ def main():
     csv_file_path = os.path.join(base_directory, 'results.csv')
     with open(csv_file_path, 'w', newline='') as csvfile:
         csv_writer = csv.writer(csvfile)
-        csv_writer.writerow(['Kappa3', 'Cross Section', 'Uncertainty'])
+        csv_writer.writerow(['Kappa3', 'Kappa4', 'Cross Section', 'Uncertainty'])
 
         for dir_name in os.listdir(base_directory):
             dir_path = os.path.join(base_directory, dir_name)
 
             if os.path.isdir(dir_path):
-                run_number = float(dir_name[3:])
+                numbers = re.findall(r'-?\d+\.\d+', dir_name)
+                number_array = [float(num) for num in numbers]
+
+                kappa3 = number_array[0]
+                kappa4 = number_array[1]
 
                 log_path = dir_path + '/out.log'
-                grep_command = 'grep "total .* cross" ' + log_path
+                grep_command = 'grep "total .* cross" ' + f'\'{log_path}\''
+
+                #print(log_path)
+                #print(f'GREP: {grep_command}')
 
                 try:
                     output_bytes = subprocess.check_output(grep_command, shell=True)
-                    output = output_bytes.decode('utf-8').strip()
+                    output = output_bytes.decode('utf-8')
+
+                    #print(f'OUTPUT: {output}')
 
                     match = re.search(r'cross section in pb\s+([\d.E-]+)\s+\+-\s+([\d.E-]+)', output)
                     if match:
@@ -53,7 +62,7 @@ def main():
                     cross_section = 'Command execution failed'
                     uncertainty = ''
 
-                csv_writer.writerow([run_number, cross_section, uncertainty])
+                csv_writer.writerow([kappa3, kappa4, cross_section, uncertainty])
 
 if __name__ == "__main__":
     main()

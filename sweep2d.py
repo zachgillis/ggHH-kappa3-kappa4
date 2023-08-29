@@ -1,31 +1,34 @@
-#!/bin/bash
+#!/usr/bin/env python3
 
-./clean.py
-
-
-
-CONFIG_FILE="config.json"
-directory_name=$(jq -r '.directory_name' "$CONFIG_FILE")
-auto_generate_sweep=$(jq -r '.auto_generate_sweep' "$CONFIG_FILE")
-kappa3_start=$(jq -r '.kappa3_start' "$CONFIG_FILE")
-kappa3_end=$(jq -r '.kappa3_end' "$CONFIG_FILE")
-kappa3_points=$(jq -r '.kappa3_points' "$CONFIG_FILE")
-kappa4_start=$(jq -r '.kappa4_start' "$CONFIG_FILE")
-kappa4_end=$(jq -r '.kappa4_end' "$CONFIG_FILE")
-kappa4_points=$(jq -r '.kappa4_points' "$CONFIG_FILE")
-nlo=$(jq -r '.nlo' "$CONFIG_FILE")
-fixedscale=$(jq -r '.fixedscale' "$CONFIG_FILE")
-
-echo 'test'
-
-dir_name=$(python3 - <<END
-
+import subprocess
+import yaml
 import os
 import sys
 
-print($nlo)
+with open('config.yaml', 'r') as yaml_file:
+    attributes = yaml.safe_load(yaml_file)
 
-if bool($nlo):
+directory_name = attributes['directory_name']
+auto_generate_sweep = attributes['auto_generate_sweep']
+kappa3_start = attributes['kappa3_start']
+kappa3_end = attributes['kappa3_end']
+kappa3_points = attributes['kappa3_points']
+kappa4_start = attributes['kappa4_start']
+kappa4_end = attributes['kappa4_end']
+kappa4_points = attributes['kappa4_points']
+nlo = attributes['nlo']
+fixedscale = attributes['fixedscale']
+
+kappa3_start = float(kappa3_start)
+kappa3_end = float(kappa3_end)
+kappa3_points = int(kappa3_points)
+kappa4_start = float(kappa4_start)
+kappa4_end = float(kappa4_end)
+kappa4_points = int(kappa4_points)
+
+subprocess.run(['./clean.py'], shell=True)
+
+if bool(nlo):
     write_dir = '/run_template_nlo'
 else:
     write_dir = '/run_template'
@@ -58,12 +61,12 @@ def generate_instances(kappa3_start, kappa3_end, kappa3_points, kappa4_start, ka
         kappa3_value = kappa3_start + i * kappa3_step
         for j in range(kappa4_points):
             kappa4_value = kappa4_start + j * kappa4_step
-            instances.append(f'{round(convert_zero(kappa3_value),3)} {round(convert_zero(kappa4_value),3)}')
+            instances.append(f'{round(convert_zero(kappa3_value),3)} {round((kappa4_value),3)}')
         instances.append(f'{round(convert_zero(kappa3_value),3)} {1.0}')
 
     for j in range(kappa4_points):
         kappa4_value = kappa4_start + j * kappa4_step
-        instances.append(f'{1.0} {round(convert_zero(kappa4_value),3)}')
+        instances.append(f'{1.0} {round((kappa4_value),3)}')
 
     instances.append(f'{1.0} {1.0}')
 
@@ -92,16 +95,8 @@ def write_to_file(filename, instances):
             file.write(f'{instance}\n')
 
 if bool(auto_generate_sweep):
-    kappa3_start = float("$kappa3_start")
-    kappa3_end = float("$kappa3_end")
-    kappa3_points = int("$kappa3_points")
-    kappa4_start = float("$kappa4_start")
-    kappa4_end = float("$kappa4_end")
-    kappa4_points = int("$kappa4_points")
-
-    dir_name = create_unique_directory("$directory_name")
+    dir_name = create_unique_directory(directory_name)
     print(dir_name)
-    os.makedirs(dir_name)
 
     instances = generate_instances(kappa3_start, kappa3_end, kappa3_points, kappa4_start, kappa4_end, kappa4_points)
 
@@ -111,7 +106,7 @@ if bool(auto_generate_sweep):
 else:
     file_path = 'instances.txt'
 
-    dir_name = create_unique_directory("$directory_name")
+    dir_name = create_unique_directory(directory_name)
     print(dir_name)
 
     with open('instances.txt', 'r') as initial_file, open('alt_instances.txt', 'w') as altered_file:
@@ -120,11 +115,6 @@ else:
             altered_line = f"{stripped_line} {dir_name} {write_dir}\n"
             altered_file.write(altered_line)
 
+subprocess.run('condor_submit job.sub', shell=True)
 
-
-END
-)
-
-#condor_submit job.sub
-
-#watch condor_q
+subprocess.run('watch condor_q', shell=True)

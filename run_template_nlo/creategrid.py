@@ -1,1 +1,1 @@
-/home/zachgillis/POWHEG-BOX-V2/ggHH-clean-kappa3kappa4/Virtual/creategrid.py
+/home/zachgillis/POWHEG-BOX-V2/ggHH-kappa3kappa4/Virtual/creategrid.py
