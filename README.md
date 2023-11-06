@@ -9,3 +9,5 @@ Once the jobs have finished running, run ``./extract_data.py``. This will create
 Use ``generate_plots.ipynb`` to generate the plots and fit the results to quadratic polynomials (LATEX must be installed, specify file paths of ``results.csv`` files to include)
 
 Graphs and sweep directories are included in this repository (``powheg.input`` files can be found in the individual child run directories). 
+
+Note: the verison 1 branch is for the old ggHH implementation. I recommend using version 2 instead (also for the old ggHH implementation), as this code can be a bit cumbersome. 
