@@ -10,7 +10,7 @@ Then, run ``./sweep2d.py``.
 
 When it has finished running in Condor, run ``./extract_data.py``. This will create a ``results.csv`` file within the run directory. 
 
-Note: The version 3 branch is for the new ggHH implementation used for the results in https://arxiv.org/pdf/1903.08137.pdf. Initialize using the following commands: 
+Note: The version 3 branch is for the new ggHH implementation used for the results in https://arxiv.org/pdf/1903.08137. Initialize using the following commands: 
 
 ``svn checkout --username anonymous --password anonymous svn://powhegbox.mib.infn.it/trunk/POWHEG-BOX-V2``
 
