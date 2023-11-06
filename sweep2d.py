@@ -16,6 +16,7 @@ kappa3_points = attributes['kappa3_points']
 kappa4_start = attributes['kappa4_start']
 kappa4_end = attributes['kappa4_end']
 kappa4_points = attributes['kappa4_points']
+energy = attributes['energy']
 nlo = attributes['nlo']
 fixedscale = attributes['fixedscale']
 
@@ -25,13 +26,14 @@ kappa3_points = int(kappa3_points)
 kappa4_start = float(kappa4_start)
 kappa4_end = float(kappa4_end)
 kappa4_points = int(kappa4_points)
+energy = int(energy)
 
 subprocess.run(['./clean.py'], shell=True)
 
 if bool(nlo):
-    write_dir = '/run_template_nlo'
+    nlo_num = 3
 else:
-    write_dir = '/run_template'
+    nlo_num = 1
 
 def create_unique_directory(base_dir):
     if not os.path.exists(base_dir):
@@ -54,23 +56,29 @@ def generate_instances(kappa3_start, kappa3_end, kappa3_points, kappa4_start, ka
     
     instances = []
 
-    kappa3_step = (kappa3_end - kappa3_start) / (kappa3_points - 1)
-    kappa4_step = (kappa4_end - kappa4_start) / (kappa4_points - 1)
+    kappa3_step = (kappa3_end - kappa3_start) / max((kappa3_points - 1), 1)
+    kappa4_step = (kappa4_end - kappa4_start) / max((kappa4_points - 1), 1)
 
     for i in range(kappa3_points):
         kappa3_value = kappa3_start + i * kappa3_step
+        
+        if kappa4_points == 1:
+            instances.append(f'{round(convert_zero(kappa3_value),3)} {round(kappa4_start,3)} {energy}')
+        else:
+            for j in range(kappa4_points):
+                kappa4_value = kappa4_start + j * kappa4_step
+                instances.append(f'{round(convert_zero(kappa3_value),3)} {round((kappa4_value),3)} {energy}')
+            instances.append(f'{round(convert_zero(kappa3_value),3)} {1.0} {energy}')
+
+    if kappa4_points != 1:
         for j in range(kappa4_points):
             kappa4_value = kappa4_start + j * kappa4_step
-            instances.append(f'{round(convert_zero(kappa3_value),3)} {round((kappa4_value),3)}')
-        instances.append(f'{round(convert_zero(kappa3_value),3)} {1.0}')
+            instances.append(f'{1.0} {round((kappa4_value),3)} {energy}')
 
-    for j in range(kappa4_points):
-        kappa4_value = kappa4_start + j * kappa4_step
-        instances.append(f'{1.0} {round((kappa4_value),3)}')
-
-    instances.append(f'{1.0} {1.0}')
+        instances.append(f'{1.0} {1.0} {energy}')
 
     return instances
+
 
 def convert_to_m_format(numbers_string):
     numbers = numbers_string.split()
@@ -87,7 +95,7 @@ def convert_to_m_format(numbers_string):
 def write_to_file_alt(filename, instances):
     with open(filename, 'w') as file:
         for instance in instances:
-            file.write(f'{convert_to_m_format(instance)} {dir_name} {write_dir}\n')
+            file.write(f'{convert_to_m_format(instance)} {dir_name} {nlo_num}\n')
 
 def write_to_file(filename, instances):
     with open(filename, 'w') as file:
@@ -112,7 +120,7 @@ else:
     with open('instances.txt', 'r') as initial_file, open('alt_instances.txt', 'w') as altered_file:
         for line in initial_file:
             stripped_line = line.strip() 
-            altered_line = f"{stripped_line} {dir_name} {write_dir}\n"
+            altered_line = f"{stripped_line} {dir_name} {nlo_num}\n"
             altered_file.write(altered_line)
 
 subprocess.run('condor_submit job.sub', shell=True)

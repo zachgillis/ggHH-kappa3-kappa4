@@ -1,10 +1,11 @@
-directory_name: 13_TeV_LO_fixedscale0
+directory_name: 13tev_ggHH_11
 auto_generate_sweep: true
 kappa3_start: -2
 kappa3_end: 8
-kappa3_points: 20
-kappa4_start: -400
-kappa4_end: 400
-kappa4_points: 30
-nlo: false
+kappa3_points: 11
+kappa4_start: 0
+kappa4_end: 0
+kappa4_points: 1
+energy: 6500
+nlo: true
 fixedscale: 0

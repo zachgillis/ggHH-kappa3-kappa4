@@ -13,7 +13,7 @@ def remove_files_with_extension(directory, extension):
                 print(f"Error while removing {file_path}: {e}")
 
 # Replace 'directory_path' with the path to your target directory
-directory_path = '/home/zachgillis/POWHEG-BOX-V2/ggHH-kappa3kappa4'
+directory_path = '/home/zachgillis/PWHG-5/ggHH-kappa3-kappa4'
 
 remove_files_with_extension(directory_path, '.out')
 remove_files_with_extension(directory_path, '.err')

@@ -1,0 +1,10 @@
+* 
+
+!/.gitignore
+!/README.md
+!/clean.py
+!/config.yaml
+!/extract_data.py
+!/job.sub
+!/run.sh
+!/sweep2d.py

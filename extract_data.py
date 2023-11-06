@@ -39,7 +39,7 @@ def main():
                 kappa3 = number_array[0]
                 kappa4 = number_array[1]
 
-                log_path = dir_path + '/out.log'
+                log_path = dir_path + '/run-2-1.log'
                 grep_command = 'grep "total .* cross" ' + f'\'{log_path}\''
 
                 #print(log_path)
