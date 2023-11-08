@@ -59,23 +59,29 @@ def generate_instances(kappa3_start, kappa3_end, kappa3_points, kappa4_start, ka
     kappa3_step = (kappa3_end - kappa3_start) / max((kappa3_points - 1), 1)
     kappa4_step = (kappa4_end - kappa4_start) / max((kappa4_points - 1), 1)
 
+    kappa3_list = []
+    kappa4_list = []
+
     for i in range(kappa3_points):
         kappa3_value = kappa3_start + i * kappa3_step
-        
-        if kappa4_points == 1:
-            instances.append(f'{round(convert_zero(kappa3_value),3)} {round(kappa4_start,3)} {energy}')
-        else:
-            for j in range(kappa4_points):
-                kappa4_value = kappa4_start + j * kappa4_step
-                instances.append(f'{round(convert_zero(kappa3_value),3)} {round((kappa4_value),3)} {energy}')
-            instances.append(f'{round(convert_zero(kappa3_value),3)} {1.0} {energy}')
+        kappa3_value = convert_zero(kappa3_value)
+        kappa3_list.append(kappa3_value)
+    
+    for j in range(kappa4_points):
+        kappa4_value = kappa4_start + j * kappa4_step
+        kappa4_list.append(kappa4_value)
 
-    if kappa4_points != 1:
-        for j in range(kappa4_points):
-            kappa4_value = kappa4_start + j * kappa4_step
-            instances.append(f'{1.0} {round((kappa4_value),3)} {energy}')
+    kappa4_list.append(0.0)
+    kappa4_list.append(1.0)
+    kappa3_list.append(1.0)
 
-        instances.append(f'{1.0} {1.0} {energy}')
+    kappa3_list = list(set(kappa3_list))
+    kappa4_list = list(set(kappa4_list))
+
+
+    for kappa3 in kappa3_list:
+        for kappa4 in kappa4_list:
+            instances.append(f'{round(kappa3,3)} {round((kappa4),3)} {energy}')
 
     return instances
 
