@@ -72,7 +72,7 @@ def generate_instances(kappa3_start, kappa3_end, kappa3_points, kappa4_start, ka
         kappa4_list.append(kappa4_value)
 
     kappa4_list.append(0.0)
-    kappa4_list.append(1.0)
+    # kappa4_list.append(1.0)
     kappa3_list.append(1.0)
 
     kappa3_list = list(set(kappa3_list))
