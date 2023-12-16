@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+export WORKDIR=/home/zachgillis/PWHG-7
+
 cd ~
 
 export ATLAS_LOCAL_ROOT_BASE=/cvmfs/atlas.cern.ch/repo/ATLASLocalRootBase
@@ -7,7 +9,7 @@ source ${ATLAS_LOCAL_ROOT_BASE}/user/atlasLocalSetup.sh
 
 current_directory=$4
 
-cd /home/zachgillis/PWHG-5/POWHEG-BOX-V2/ggHH
+cd $WORKDIR/POWHEG-BOX-V2/ggHH
 
 setupATLAS
 lsetup "views LCG_98python3 x86_64-centos7-gcc8-opt"
@@ -67,10 +69,9 @@ sed -i "s/chhh      1.0/chhh      ${kappa3}/" powheg.input-save
 
 ./run.sh $5
 
-mkdir "/home/zachgillis/PWHG-5/ggHH-kappa3-kappa4/${current_directory}/kappa3 = ${kappa3}, kappa4 = ${kappa4}"
+mkdir "$WORKDIR/ggHH-kappa3-kappa4/${current_directory}/kappa3 = ${kappa3}, kappa4 = ${kappa4}"
 
-find . -maxdepth 1 -type f -name "run-2*.log" -printf '%T+ %p\n' | sort -r | head -n 1 | cut -d' ' -f2- | xargs -I {} cp {} "/home/zachgillis/PWHG-5/ggHH-kappa3-kappa4/${current_directory}/kappa3 = ${kappa3}, kappa4 = ${kappa4}"
+find . -maxdepth 1 -type f -name "run-2*.log" -printf '%T+ %p\n' | sort -r | head -n 1 | cut -d' ' -f2- | xargs -I {} cp {} "$WORKDIR/ggHH-kappa3-kappa4/${current_directory}/kappa3 = ${kappa3}, kappa4 = ${kappa4}"
 
 cd ..
-ln -s "$PWD/${current_directory}_kappa3 = ${kappa3}, kappa4 = ${kappa4}" "/home/zachgillis/PWHG-5/ggHH-kappa3-kappa4/${current_directory}/kappa3 = ${kappa3}, kappa4 = ${kappa4}"
-
+ln -s "$PWD/${current_directory}_kappa3 = ${kappa3}, kappa4 = ${kappa4}" "$WORKDIR/ggHH-kappa3-kappa4/${current_directory}/kappa3 = ${kappa3}, kappa4 = ${kappa4}"
