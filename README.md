@@ -27,5 +27,3 @@ git clone https://github.com/zachgillis/ggHH-kappa3-kappa4.git
 3. Run ``./sweep2d.py``.
 
 4. When it has finished running in Condor, run ``./extract_data.py <directory_name>``, where ``<directory_name>`` is the name specified in the ``config.yaml`` file. This will create a ``results.csv`` file within the run directory. 
-
-Note: The version 3 branch is for the new ggHH implementation used for the results in https://arxiv.org/pdf/1903.08137. 
