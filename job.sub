@@ -7,7 +7,7 @@ Log = job.log
 request_memory=8GB
 request_cpus=2
 
-Executable = /home/zachgillis/PWHG-5/ggHH-kappa3-kappa4/run.sh
+Executable = /home/zachgillis/PWHG-7/ggHH-kappa3-kappa4/run.sh
 Arguments = $(item)
 
 Queue item from alt_instances.txt
