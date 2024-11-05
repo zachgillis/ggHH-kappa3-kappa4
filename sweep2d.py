@@ -85,20 +85,10 @@ def generate_instances(kappa3_start, kappa3_end, kappa3_points, kappa4_start, ka
 
     return instances
 
-
-def add_quotes(numbers_string):
-    numbers = numbers_string.split()
-    converted_numbers = []
-
-    for num in numbers:
-        converted_numbers.append(f'\"{num}\"')
-    
-    return ' '.join(converted_numbers)
-
 def write_to_file_alt(filename, instances):
     with open(filename, 'w') as file:
         for instance in instances:
-            file.write(f'{add_quotes(instance)} \"{dir_name}\" \"{nlo_num}\"\n')
+            file.write(f'{instance} {dir_name} {nlo_num}\n')
 
 def write_to_file(filename, instances):
     with open(filename, 'w') as file:
