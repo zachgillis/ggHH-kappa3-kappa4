@@ -1,3 +1,18 @@
+echo $1
+echo $2
+echo $3
+echo $4
+echo $5
+echo $6
+
+
+export k3=$1
+export k4=$2
+export energy=$3
+export current_directory=$4
+export run_arg=$5
+export WORKDIR=$6
+
 cd $WORKDIR/POWHEG-BOX-V2/ggHH
 
 lsetup "views LCG_98python3 x86_64-centos7-gcc8-opt"
