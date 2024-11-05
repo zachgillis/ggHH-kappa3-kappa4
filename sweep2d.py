@@ -86,22 +86,19 @@ def generate_instances(kappa3_start, kappa3_end, kappa3_points, kappa4_start, ka
     return instances
 
 
-def convert_to_m_format(numbers_string):
+def add_quotes(numbers_string):
     numbers = numbers_string.split()
     converted_numbers = []
 
     for num in numbers:
-        if num.startswith('-'):
-            converted_numbers.append('m' + num[1:])
-        else:
-            converted_numbers.append(num)
+        converted_numbers.append(f'\"{num}\"')
     
     return ' '.join(converted_numbers)
 
 def write_to_file_alt(filename, instances):
     with open(filename, 'w') as file:
         for instance in instances:
-            file.write(f'{convert_to_m_format(instance)} {dir_name} {nlo_num}\n')
+            file.write(f'{add_quotes(instance)} \"{dir_name}\" \"{nlo_num}\"\n')
 
 def write_to_file(filename, instances):
     with open(filename, 'w') as file:
