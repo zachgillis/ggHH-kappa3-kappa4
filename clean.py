@@ -2,7 +2,7 @@
 
 import os
 
-WORKDIR = '/home/zachgillis/PWHG-7'
+WORKDIR = '/home/zachgillis/test110524_03'
 
 def remove_files_with_extension(directory, extension):
     for filename in os.listdir(directory):
