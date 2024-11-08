@@ -15,4 +15,4 @@ git clone https://github.com/zachgillis/ggHH-kappa3-kappa4.git
 
 3. Run ``./sweep2d.py``.
 
-4. When it has finished running in Condor, move run output directories ``<directory_name>_kappa3_*.*_kappa4_*.*`` into the empty run directory ``<directory_name> and run ``./extract_data.py <directory_name>``, where ``<directory_name>`` is the name specified in the ``config.yaml`` file. This will create a ``results.csv`` file within the run directory. 
+4. When it has finished running in Condor, move run output directories ``<directory_name>_kappa3_*.*_kappa4_*.*`` into the empty run directory ``<directory_name>`` and run ``./extract_data.py <directory_name>``, where ``<directory_name>`` is the name specified in the ``config.yaml`` file. This will create a ``results.csv`` file within the run directory. 
