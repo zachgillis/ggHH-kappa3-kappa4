@@ -2,7 +2,7 @@
 
 ## Instructions
 
-1. Create a working directory
+1. Create a working directory.
 
 2. Clone this repository into your working directory (i.e., run the following).
 
