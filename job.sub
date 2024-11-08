@@ -4,14 +4,19 @@ Output = job.$(Cluster).$(Process).out
 Error = job.$(Cluster).$(Process).err
 Log = job.log
 
-request_memory=16GB
-request_disk=16GB
-request_cpus=4
+request_cpus=8
+request_memory=24GB
+request_disk=64GB
 
 stream_output = True
 stream_error = True
 
-Executable = /home/zachgillis/test110524/ggHH-kappa3-kappa4/run.sh
+transfer_input_files = script.sh
+output_dir = $(current_directory)_kappa3_$(k3)_kappa4_$(k4)
+transfer_output_files = POWHEG-BOX-V2/ggHH/$(output_dir)
+transfer_output_remaps = "POWHEG-BOX-V2/ggHH/$(output_dir)=$(current_directory)/kappa3_$(k3)_kappa4_$(k4)"
+
+Executable = /home/zachgillis/test110524_03/ggHH-kappa3-kappa4/run.sh
 Arguments = -- $(k3) $(k4) $(energy) $(current_directory) $(run_arg)
 
 Queue k3, k4, energy, current_directory, run_arg from alt_instances.txt
